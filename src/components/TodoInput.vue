@@ -1,6 +1,12 @@
 <template>
   <div>
-    <input type="text" v-model="newTodoItem" v-on:keyup.enter="addTodo" placeholder="할 일을 입력하세요" />
+    <input
+      type="text"
+      v-model="newTodoItem"
+      v-on:keyup.enter="addTodo"
+      placeholder="할 일을 입력하세요"
+      class="shadow"
+    />
     <span v-on:click="addTodo">
       <i class="fa fa-plus"></i>
     </span>
@@ -18,7 +24,7 @@ export default {
     addTodo() {
       if (this.newTodoItem !== "") {
         const value = this.newTodoItem && this.newTodoItem.trim();
-        localStorage.setItem(value, value);
+        this.$emit("addTodo", value);
         this.clearValue();
       }
     },
